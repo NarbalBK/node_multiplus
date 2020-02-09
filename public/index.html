@@ -36,10 +36,17 @@
             })
 
             socket.on('setup', (state) => {
-                console.log(`> Receiving "setup" event from server`)
-                console.log(state)
+                game.setState(state)
+            })
 
-                game.state = state
+            socket.on('add-player', (command) => {
+                console.log(`> Receiving ${command.type} -> ${command.playerId}`)
+                game.addPlayer(command)
+            })
+
+            socket.on('remove-player', (command) => {
+                console.log(`> Receiving ${command.type} -> ${command.playerId}`)
+                game.removePlayer(command)
             })
 
         </script>
